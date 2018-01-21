@@ -149,47 +149,94 @@ public class CalculatorController {
 
         if(divideFlag)
         {
-            value2 = Double.parseDouble(screen.getText());
+           if(screen.getText().trim().isEmpty() || screen.getText().equals("/"))
+               value2 = 0;
+           else
+               value2 = Double.parseDouble(screen.getText());
             result = value1/value2;
             screen.setText(String.valueOf(result));
         }
         else if(multiFlag)
         {
+            if(screen.getText().trim().isEmpty() || screen.getText().equals("*"))
+                value2 = 1;
+            else
+                value2 = Double.parseDouble(screen.getText());
             value2 = Double.parseDouble(screen.getText());
             result = value1*value2;
             screen.setText(String.valueOf(result));
         }
         else if(minusFlag)
         {
+            if(screen.getText().trim().isEmpty() || screen.getText().equals("-"))
+                value2 = 0;
+            else
+                value2 = Double.parseDouble(screen.getText());
             value2 = Double.parseDouble(screen.getText());
             result = value1-value2;
             screen.setText(String.valueOf(result));
         }
         else if(plusFlag)
         {
+            if(screen.getText().trim().isEmpty() || screen.getText().equals("+"))
+                value2 = 0;
+            else
+                value2 = Double.parseDouble(screen.getText());
             value2 = Double.parseDouble(screen.getText());
             result = value1+value2;
             screen.setText(String.valueOf(result));
         }
         else if(percentFlag)
         {
+            if(screen.getText().trim().isEmpty() || screen.getText().equals("%"))
+                value2 = 0;
+            else
+                value2 = Double.parseDouble(screen.getText());
             value2 = Double.parseDouble(screen.getText());
             result = (int)value1 % (int)value2;
             screen.setText(String.valueOf(result));
         }
         else if(stronFlag)
         {
+            if(!screen.getText().equals("!") && !screen.getText().trim().isEmpty())
+            {
+                value1 = Double.parseDouble(screen.getText());
+            }
             result = strong((int)value1);
             screen.setText(String.valueOf(result));
         }
         else if(logFlag)
         {
-            result = Math.log(value1);
-            screen.setText(String.valueOf(result));
+            if(screen.getText().trim().isEmpty())
+                value2 = 0;
+            else if(screen.getText().equals("log"))
+            {
+                result = Math.log(value1);
+                screen.setText(String.valueOf(result));
+            }
+            else {
+                value2 = Double.parseDouble(screen.getText());
+                result = Math.log(value2);
+                screen.setText(String.valueOf(result));
+            }
         }
         else if(eFlag)
         {
+            if(!screen.getText().equals("e"))
+                value1 = Double.parseDouble(screen.getText());
+            else if(screen.getText().trim().isEmpty())
+                value1 = 0;
+
             result = value1 * 2.71828182846;
+            screen.setText(String.valueOf(result));
+        }
+        else
+        {
+            if(screen.getText().trim().isEmpty())
+                result = 0;
+            else
+                result = Double.parseDouble(screen.getText());
+
             screen.setText(String.valueOf(result));
         }
         divideFlag = false;
@@ -206,10 +253,8 @@ public class CalculatorController {
     }
 
     public void dividePress(){
-        if(!screen.getText().trim().isEmpty())
+        if(!screen.getText().trim().isEmpty() && (!screen.getText().equals("+") && !screen.getText().equals("-") && !screen.getText().equals("*") && !screen.getText().equals("/") && !screen.getText().equals("!") && !screen.getText().equals("%") && !screen.getText().equals("log") && !screen.getText().equals("e")))
              value1 = Double.parseDouble(screen.getText());
-        else
-            value1 = 0;
 
         screen.setText("/");
         divideFlag = true;
@@ -231,10 +276,9 @@ public class CalculatorController {
     }
 
     public void multiPress(){
-        if(!screen.getText().trim().isEmpty())
+        if(!screen.getText().trim().isEmpty() && (!screen.getText().equals("+") && !screen.getText().equals("-") && !screen.getText().equals("*") && !screen.getText().equals("/") && !screen.getText().equals("!") && !screen.getText().equals("%") && !screen.getText().equals("log") && !screen.getText().equals("e")))
             value1 = Double.parseDouble(screen.getText());
-        else
-            value1 = 0;
+
         screen.setText("*");
         divideFlag = false;
         divide.setTextFill(Color.BLACK);
@@ -255,10 +299,9 @@ public class CalculatorController {
     }
 
     public void minusPress(){
-        if(!screen.getText().trim().isEmpty())
+        if(!screen.getText().trim().isEmpty() && (!screen.getText().equals("+") && !screen.getText().equals("-") && !screen.getText().equals("*") && !screen.getText().equals("/") && !screen.getText().equals("!") && !screen.getText().equals("%") && !screen.getText().equals("log") && !screen.getText().equals("e")))
             value1 = Double.parseDouble(screen.getText());
-        else
-            value1 = 0;
+
         screen.setText("-");
         divideFlag = false;
         divide.setTextFill(Color.BLACK);
@@ -279,10 +322,9 @@ public class CalculatorController {
     }
 
     public void plusPress(){
-        if(!screen.getText().trim().isEmpty())
+        if(!screen.getText().trim().isEmpty() && (!screen.getText().equals("+") && !screen.getText().equals("-") && !screen.getText().equals("*") && !screen.getText().equals("/") && !screen.getText().equals("!") && !screen.getText().equals("%") && !screen.getText().equals("log") && !screen.getText().equals("e")))
             value1 = Double.parseDouble(screen.getText());
-        else
-            value1 = 0;
+
         screen.setText("+");
         divideFlag = false;
         divide.setTextFill(Color.BLACK);
@@ -303,10 +345,9 @@ public class CalculatorController {
     }
 
     public void percentPress(){
-        if(!screen.getText().trim().isEmpty())
+        if(!screen.getText().trim().isEmpty() && (!screen.getText().equals("+") && !screen.getText().equals("-") && !screen.getText().equals("*") && !screen.getText().equals("/") && !screen.getText().equals("!") && !screen.getText().equals("%") && !screen.getText().equals("log") && !screen.getText().equals("e")))
             value1 = Double.parseDouble(screen.getText());
-        else
-            value1 = 0;
+
         screen.setText("%");
         divideFlag = false;
         divide.setTextFill(Color.BLACK);
@@ -327,10 +368,9 @@ public class CalculatorController {
     }
 
     public void strongPress(){
-        if(!screen.getText().trim().isEmpty())
+        if(!screen.getText().trim().isEmpty() && (!screen.getText().equals("+") && !screen.getText().equals("-") && !screen.getText().equals("*") && !screen.getText().equals("/") && !screen.getText().equals("!") && !screen.getText().equals("%") && !screen.getText().equals("log") && !screen.getText().equals("e")))
             value1 = Double.parseDouble(screen.getText());
-        else
-            value1 = 0;
+
         screen.setText("!");
         divideFlag = false;
         divide.setTextFill(Color.BLACK);
@@ -351,10 +391,9 @@ public class CalculatorController {
     }
 
     public void logPress(){
-        if(!screen.getText().trim().isEmpty())
+        if(!screen.getText().trim().isEmpty() && (!screen.getText().equals("+") && !screen.getText().equals("-") && !screen.getText().equals("*") && !screen.getText().equals("/") && !screen.getText().equals("!") && !screen.getText().equals("%") && !screen.getText().equals("log") && !screen.getText().equals("e")))
             value1 = Double.parseDouble(screen.getText());
-        else
-            value1 = 0;
+
         screen.setText("log");
         divideFlag = false;
         divide.setTextFill(Color.BLACK);
@@ -375,10 +414,9 @@ public class CalculatorController {
     }
 
     public void ePress(){
-        if(!screen.getText().trim().isEmpty())
+        if(!screen.getText().trim().isEmpty() && (!screen.getText().equals("+") && !screen.getText().equals("-") && !screen.getText().equals("*") && !screen.getText().equals("/") && !screen.getText().equals("!") && !screen.getText().equals("%") && !screen.getText().equals("log") && !screen.getText().equals("e")))
             value1 = Double.parseDouble(screen.getText());
-        else
-            value1 = 0;
+
         screen.setText("e");
         divideFlag = false;
         divide.setTextFill(Color.BLACK);
@@ -399,6 +437,7 @@ public class CalculatorController {
     }
 
     public void cPress(){
+
         screen.setText("");
     }
 
@@ -423,6 +462,25 @@ public class CalculatorController {
             return 1;
         else
             return i * strong(i - 1);
+    }
+
+    public void setFlagsAndColor(boolean flag, Button button)
+    {
+        divideFlag = false;
+        divide.setTextFill(Color.BLACK);
+        multiFlag = false;
+        multi.setTextFill(Color.BLACK);
+        minusFlag = false;
+        minus.setTextFill(Color.BLACK);
+        plusFlag = false;
+        plus.setTextFill(Color.BLACK);
+        percentFlag = false;
+        percent.setTextFill(Color.BLACK);
+        stronFlag = false;
+        strong.setTextFill(Color.BLACK);
+        logFlag = false;
+        log.setTextFill(Color.BLACK);
+
     }
 
 }
