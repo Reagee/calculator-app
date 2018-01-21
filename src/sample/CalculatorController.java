@@ -482,5 +482,4 @@ public class CalculatorController {
         log.setTextFill(Color.BLACK);
 
     }
-
 }
