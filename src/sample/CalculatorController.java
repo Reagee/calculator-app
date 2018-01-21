@@ -480,6 +480,7 @@ public class CalculatorController {
         strong.setTextFill(Color.BLACK);
         logFlag = false;
         log.setTextFill(Color.BLACK);
-
+        flag = true;
+        button.setTextFill(Color.RED);
     }
 }
